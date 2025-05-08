@@ -1,7 +1,7 @@
 # FastMap: Revisiting Dense and Scalable Structure from Motion
 A fast structure from motion pipeline written in Pytorch for images densely convering a scene.
 
-\[[Paper](none)\] \[[Project Page](https://jiahao.ai/fastmap)\]
+\[[Paper](http://arxiv.org/abs/2505.04612)\] \[[Project Page](https://jiahao.ai/fastmap)\]
 
 ![teaser](assets/teaser.png)
 
