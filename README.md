@@ -92,4 +92,15 @@ GLOMAP/COLMAP container:
 ## BibTeX
 If you use this tool for your research please cite the following paper
 ```bibtex
+@article{2505.04612v1,
+    Author        = {Jiahao Li and Haochen Wang and Muhammad Zubair Irshad and Igor Vasiljevic and Matthew R. Walter and Vitor Campagnolo Guizilini and Greg Shakhnarovich},
+    Title         = {FastMap: Revisiting Dense and Scalable Structure from Motion},
+    Eprint        = {2505.04612v1},
+    ArchivePrefix = {arXiv},
+    PrimaryClass  = {cs.CV},
+    Year          = {2025},
+    Month         = {May},
+    Url           = {http://arxiv.org/abs/2505.04612v1},
+    File          = {2505.04612v1.pdf}
+}
 ```
