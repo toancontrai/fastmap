@@ -1,5 +1,5 @@
 # FastMap: Revisiting Dense and Scalable Structure from Motion
-A fast structure from motion pipeline written in Pytorch for images densely convering a scene.
+A fast structure from motion pipeline written in Pytorch for images densely covering a scene.
 
 \[[Paper](http://arxiv.org/abs/2505.04612)\] \[[Project Page](https://jiahao.ai/fastmap)\]
 
@@ -20,7 +20,7 @@ pip install git+https://github.com/jiahaoli95/pyrender.git
 ## Usage
 
 ### Basics
-The structure from motion pipeline consists of two parts: feature matching and pose estimation. We use the image matching routines in [COLMAP](https://colmap.github.io/tutorial.html) to obtain a [database](https://colmap.github.io/database.html) that contains matching results, and feed it to FastMap to estimate the camera poses and triangulate a sparse point cloud. Given a directory of images (possibly with nested directory structrures), the easiest way to run the pipeline using the default configuration is (assuming you have a monitor connected):
+The structure from motion pipeline consists of two parts: feature matching and pose estimation. We use the image matching routines in [COLMAP](https://colmap.github.io/tutorial.html) to obtain a [database](https://colmap.github.io/database.html) that contains matching results, and feed it to FastMap to estimate the camera poses and triangulate a sparse point cloud. Given a directory of images (possibly with nested directory structures), the easiest way to run the pipeline using the default configuration is (assuming you have a monitor connected):
 ```bash
 # keypoint detection and feature extraction
 colmap feature_extractor --database_path /path/to/your/database.db --image_path /path/to/your/image/directory
@@ -32,7 +32,7 @@ python run.py --database /path/to/your/database.db --image_dir /path/to/your/ima
 An interactive visualization will appear after FastMap finishes, and the results will be stored in the provided output directory in the same [format](https://colmap.github.io/format.html) as COLMAP. Please refer to the official COLMAP [tutorial](https://colmap.github.io/tutorial.html) and [command-line interface guide](https://colmap.github.io/cli.html) for various options that can be passed to the feature extractor and matcher (e.g., accelerating with GPUs).
 
 ### Configuration
-There are many hyper-parameters and options that allow you to control the bahavior of FastMap. They are specified as a set of dataclasses (with default values) in `fastmap/config.py`. To change the config, you can pass the path of a YAML file to `run.py`
+There are many hyper-parameters and options that allow you to control the behavior of FastMap. They are specified as a set of dataclasses (with default values) in `fastmap/config.py`. To change the config, you can pass the path of a YAML file to `run.py`
 ```bash
 python run.py --config /path/to/your/config.yaml --database /path/to/your/database.db --image_dir /path/to/your/image/directory --output_dir /your/output/directory
 ```
@@ -69,7 +69,6 @@ python run.py --headless --database /path/to/your/database.db --image_dir /path/
 **Pinhole Camera:** If you are sure that the distortion is extremely small and a pinhole camera model is appropriate, you can use the `--pinhole` flag to tell FastMap not to estimate the distortion parameter, which can save some time. In practice, however, even distortions that are imperceptible to the human eye can have a negative effect on the estimation of focal length and pose.
 
 **Calibrated Camera:** If the cameras are calibrated, and the focal length and principal point information are stored in the database, you can pass the `--calibrated` flag to use the known intrinsics. While the final focal length might still be different after optimization, the principal point will remain fixed. Note that if you use this flag, FastMap assumes it is a pinhole camera model, so the images should be undistorted properly before feature extraction and matching.
-
 
 ### Visualization
 We include a simple visualizer for inspecting the results in the COLMAP format (which FastMap adopts). COLMAP supports outputting multiple models, so the results are stored in numbered subdirectories, such as `sparse/0`, `sparse/1`, and so on. FastMap always outputs only one model and abandons the images that fail to be registered, but to be consistent, we still use this naming convention, and so everything is stored in the `sparse/0` subdirectory. To interactively visualize a model stored in `sparse/0` (including the camera poses and point cloud), use the following command:
